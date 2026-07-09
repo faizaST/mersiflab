@@ -1,4 +1,4 @@
-﻿@extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
 <div class="space-y-6">
@@ -28,6 +28,17 @@
                 <option value="{{ $p->id }}" {{ $selectedId == $p->id ? 'selected' : '' }}>{{ $p->nama }}</option>
             @endforeach
         </select>
+        <button type="submit"
+                class="px-4 py-2 text-sm font-semibold text-white rounded-xl transition-all"
+                style="background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%); box-shadow: 0 4px 12px rgba(56,189,248,0.30);">
+            <i class="fa-solid fa-filter mr-1"></i>Filter
+        </button>
+        @if(request()->hasAny(['search','pelatihan_id']))
+        <a href="{{ route('admin.monitoring.index') }}"
+           class="px-4 py-2 text-sm font-medium text-slate-500 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors flex items-center justify-center">
+            <i class="fa-solid fa-xmark mr-1"></i>Reset
+        </a>
+        @endif
     </form>
 
     {{-- Table --}}

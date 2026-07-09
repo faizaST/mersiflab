@@ -15,6 +15,12 @@ class PendaftaranController extends Controller
     {
         $query = Pendaftaran::with(['peserta', 'pelatihan'])->latest();
 
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->whereHas('peserta', function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%");
+            });
+        }
         if ($request->filled('pelatihan_id')) {
             $query->where('pelatihan_id', $request->pelatihan_id);
         }
@@ -45,6 +51,28 @@ class PendaftaranController extends Controller
             'catatan_admin' => 'Pembayaran tidak valid',
         ]);
         return back()->with('success', 'Pendaftaran ditolak.');
+    }
+
+    public function batalVerifikasi(int $id)
+    {
+        $daftar = Pendaftaran::with('sertifikat')->findOrFail($id);
+
+        // Hapus sertifikat jika ada
+        if ($daftar->sertifikat) {
+            if ($daftar->sertifikat->file_path && Storage::disk('public')->exists($daftar->sertifikat->file_path)) {
+                Storage::disk('public')->delete($daftar->sertifikat->file_path);
+            }
+            $daftar->sertifikat->delete();
+        }
+
+        // Hapus presensi jika ada
+        \App\Models\Presensi::where('user_id', $daftar->user_id)
+            ->whereHas('sesi', fn($q) => $q->where('pelatihan_id', $daftar->pelatihan_id))
+            ->delete();
+
+        $daftar->update(['status' => 'pending']);
+
+        return back()->with('success', 'Verifikasi pendaftaran berhasil dibatalkan.');
     }
 
     /* Tampilkan file bukti bayar */

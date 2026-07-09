@@ -1,4 +1,4 @@
-﻿@extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
 <div class="space-y-6" x-data="{ 
@@ -205,7 +205,15 @@
                                         <i class="fa-solid fa-file-invoice"></i> Lihat Nota
                                     </button>
                                     @endif
-                                    <span class="text-xs text-slate-400">—</span>
+                                    <form action="{{ route('admin.pendaftaran.batal-verifikasi', $daftar->id) }}" method="POST"
+                                          onsubmit="return confirm('Apakah Anda yakin ingin membatalkan verifikasi pendaftaran untuk {{ e($namaPeserta) }}? Semua sertifikat dan presensi terkait pelatihan ini juga akan dihapus.')"
+                                          class="inline-block">
+                                        @csrf
+                                        <button type="submit"
+                                                class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg transition-colors">
+                                            <i class="fa-solid fa-rotate-left"></i> Batal Verifikasi
+                                        </button>
+                                    </form>
                                 </div>
                             @endif
                         </td>

@@ -52,10 +52,11 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->grou
     Route::post('/kategori/ajax',          [KategoriPelatihanController::class, 'storeAjax'])->name('kategori.storeAjax');
 
     // Pendaftaran
-    Route::get('/pendaftaran',                  [PendaftaranController::class, 'index'])->name('pendaftaran.index');
-    Route::post('/pendaftaran/{id}/verifikasi', [PendaftaranController::class, 'verifikasi'])->name('pendaftaran.verifikasi');
-    Route::post('/pendaftaran/{id}/tolak',      [PendaftaranController::class, 'tolak'])->name('pendaftaran.tolak');
-    Route::get('/pendaftaran/{id}/bukti',       [PendaftaranController::class, 'lihatBukti'])->name('pendaftaran.bukti');
+    Route::get('/pendaftaran',                       [PendaftaranController::class, 'index'])->name('pendaftaran.index');
+    Route::post('/pendaftaran/{id}/verifikasi',      [PendaftaranController::class, 'verifikasi'])->name('pendaftaran.verifikasi');
+    Route::post('/pendaftaran/{id}/tolak',           [PendaftaranController::class, 'tolak'])->name('pendaftaran.tolak');
+    Route::post('/pendaftaran/{id}/batal-verifikasi', [PendaftaranController::class, 'batalVerifikasi'])->name('pendaftaran.batal-verifikasi');
+    Route::get('/pendaftaran/{id}/bukti',            [PendaftaranController::class, 'lihatBukti'])->name('pendaftaran.bukti');
 
     // Monitoring
     Route::get('/monitoring', [MonitoringController::class, 'index'])->name('monitoring.index');
