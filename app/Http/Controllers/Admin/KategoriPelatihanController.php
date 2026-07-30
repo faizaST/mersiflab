@@ -64,8 +64,8 @@ class KategoriPelatihanController extends Controller
             'warna' => $request->warna,
         ]);
 
-        // Automatically update all training sessions using the old category name
-        // No need to update trainings; they reference the category by ID.
+        // Memperbarui semua sesi pelatihan yang menggunakan nama kategori lama secara otomatis
+        // Tidak perlu memperbarui pelatihan; pelatihan tersebut merujuk pada kategori berdasarkan ID.
 
         return redirect()->route('admin.kategori.index')
             ->with('success', 'Kategori Pelatihan berhasil diperbarui.');
@@ -76,7 +76,7 @@ class KategoriPelatihanController extends Controller
         $kategori = KategoriPelatihan::findOrFail($id);
         $name = $kategori->nama;
         
-        // Nullify category on associated trainings
+       // Mengosongkan kategori pada pelatihan terkait
         Pelatihan::where('kategori_id', $id)->update([
             'kategori_id' => null,
         ]);
@@ -87,9 +87,7 @@ class KategoriPelatihanController extends Controller
             ->with('success', 'Kategori Pelatihan "' . $name . '" berhasil dihapus.');
     }
 
-    /**
-     * API endpoint to add category dynamically via AJAX in Pelatihan form
-     */
+    //Endpoint API untuk menambahkan kategori secara dinamis melalui AJAX pada formulir Pelatihan
     public function storeAjax(Request $request)
     {
         $request->validate([

@@ -30,9 +30,7 @@
     </div>
     @endif
 
-    {{-- ══════════════════════════════════════════
-         FORM EDIT — satu form, tidak ada form lain di dalamnya
-    ══════════════════════════════════════════ --}}
+    {{-- FORM EDIT --}}
     <form id="editForm" action="{{ route('admin.pelatihan.update', $pelatihan->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
         @method('PUT')
@@ -415,9 +413,8 @@
             </button>
         </div>
     </form>
-    {{-- END FORM EDIT --}}
 
-    {{-- Modal Konfirmasi Hapus (di luar form edit) --}}
+    {{-- Modal Konfirmasi Hapus di luar form edit) --}}
     <div x-show="showDeleteModal" x-cloak
          class="fixed inset-0 z-50 flex items-center justify-center p-4"
          x-transition:enter="transition ease-out duration-200"

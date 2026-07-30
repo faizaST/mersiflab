@@ -16,7 +16,7 @@ class PresensiController extends Controller
         /** @var \App\Models\User $user */
         $user = Auth::user();
 
-        // Pelatihan via pivot (menggunakan relasi yang sudah didefinisikan di User model)
+        //Pilih pelatihan yang diampu mentor
         $pelatihans = $user->pelatihans()->with('sesi')->latest()->get();
 
         $pesertaPerPelatihan = $pelatihans->mapWithKeys(function ($p) {

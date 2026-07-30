@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class RedirectController extends Controller
 {
-    /** Redirect ke dashboard sesuai role user yang login */
+    //Redirect ke dashboard sesuai role user yang login
     public function dashboard(Request $request): RedirectResponse
     {
         /** @var \App\Models\User $user */

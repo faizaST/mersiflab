@@ -263,7 +263,7 @@
                 </button>
             </div>
 
-            {{-- Hidden input: hanya dikirim saat berbayar = true --}}
+            {{-- Hidden input berbayar --}}
             <input type="hidden" name="berbayar" :value="berbayar ? '1' : ''">
 
             <div x-show="berbayar" x-transition class="space-y-4">

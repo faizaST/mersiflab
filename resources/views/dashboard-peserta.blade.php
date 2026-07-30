@@ -12,7 +12,7 @@
 
 <div class="space-y-8">
 
-    {{-- Welcome Section --}}
+    {{-- Welcome --}}
     <div class="relative overflow-hidden bg-gradient-to-r from-sky-500 to-cyan-400 rounded-3xl p-8 shadow-soft">
 
         <div class="absolute right-0 top-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>

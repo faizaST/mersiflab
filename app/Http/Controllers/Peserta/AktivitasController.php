@@ -17,7 +17,7 @@ class AktivitasController extends Controller
         /** @var \App\Models\User $user */
         $user = Auth::user();
 
-        // Hanya pendaftaran yang sudah terverifikasi yang muncul di aktivitas
+        //Muncul Pendaftaran yang sudah terverifikasi
         $pendaftarans = Pendaftaran::with(['pelatihan.sesi', 'pelatihan.mentors'])
             ->where('user_id', $user->id)
             ->where('status', 'terverifikasi')
@@ -26,7 +26,7 @@ class AktivitasController extends Controller
         $selectedPelatihanId = $request->pelatihan_id ?? $pendaftarans->first()?->pelatihan_id;
         $selectedDaftar      = $pendaftarans->firstWhere('pelatihan_id', $selectedPelatihanId);
 
-        // Data presensi untuk pelatihan terpilih
+        //Data presensi pelatihan yang dipilih
         $presensiData = collect();
         $persenHadir  = 0;
         $totalSesi    = 0;
@@ -59,7 +59,7 @@ class AktivitasController extends Controller
         ));
     }
 
-    /** Upload bukti pembayaran */
+    //Upload bukti pembayaran
     public function uploadBukti(Request $request, int $pendaftaranId)
     {
         $request->validate([
@@ -72,7 +72,7 @@ class AktivitasController extends Controller
             ->where('user_id', $user->id)
             ->firstOrFail();
 
-        // Hapus file lama jika ada
+        //Hapus file lama jika ada (upload ulang bukti bayar)
         if ($daftar->bukti_bayar && Storage::disk('public')->exists($daftar->bukti_bayar)) {
             Storage::disk('public')->delete($daftar->bukti_bayar);
         }

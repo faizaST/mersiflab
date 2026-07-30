@@ -42,7 +42,7 @@ class UserController extends Controller
             ->with('success', 'Mentor "' . $request->name . '" berhasil ditambahkan.');
     }
 
-    /*Assign mentor ke pelatihan*/
+    //Assign mentor ke pelatihan
     public function assignMentor(Request $request): RedirectResponse
     {
         $request->validate([
@@ -60,7 +60,7 @@ class UserController extends Controller
             ->with('success', $mentor->name . ' berhasil diassign ke "' . $pelatihan->nama . '".');
     }
 
-    /*Lepas assignment mentor*/
+    //Lepas assignment mentor
     public function unassignMentor(Request $request): RedirectResponse
     {
         $request->validate([
@@ -86,9 +86,7 @@ class UserController extends Controller
             ->with('success', 'Mentor "' . $name . '" berhasil dihapus.');
     }
 
-    /**
-     * Reset password peserta oleh admin.
-     */
+    //Reset password peserta oleh admin
     public function resetPasswordPeserta(Request $request, int $id): RedirectResponse
     {
         $request->validate([

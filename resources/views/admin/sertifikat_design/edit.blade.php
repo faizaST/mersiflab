@@ -46,7 +46,7 @@
                 @csrf
                 @method('PUT')
 
-                {{-- Card 1: Background Template --}}
+                {{-- Card Background Template --}}
                 <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
                     <div class="flex items-start gap-3 border-b border-slate-100 pb-3">
                         <div class="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
@@ -86,7 +86,7 @@
                     </div>
                 </div>
 
-                {{-- Card 2: Header Logos --}}
+                {{-- Card Header Logos --}}
                 <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
                     <div class="flex items-start gap-3 border-b border-slate-100 pb-3">
                         <div class="p-2 bg-sky-50 text-sky-600 rounded-xl">
@@ -181,7 +181,7 @@
             </form>
         </div>
 
-        {{-- Right Live Mockup Panel (col-span-1) --}}
+        {{-- Right Live Mockup Panel --}}
         <div class="space-y-6">
             
             {{-- Live Mockup Card --}}

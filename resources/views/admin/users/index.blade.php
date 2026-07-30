@@ -56,7 +56,7 @@
         </button>
     </div>
 
-    {{-- ── MENTOR TABLE ── --}}
+    {{-- MENTOR TABLE --}}
     <div x-show="tab === 'mentor'" class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="px-6 py-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center gap-3">
             <div class="flex items-center justify-between flex-1">
@@ -172,7 +172,7 @@
         @endif
     </div>
 
-    {{-- ── PESERTA TABLE ── --}}
+    {{-- PESERTA TABLE --}}
     <div x-show="tab === 'peserta'" class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="px-6 py-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center gap-3">
             <div class="flex items-center justify-between flex-1">
@@ -256,9 +256,7 @@
         @endif
     </div>
 
-    {{-- ══════════════════════════════════════
-         MODAL: Tambah Mentor
-    ══════════════════════════════════════ --}}
+    {{-- MODAL: Tambah Mentor --}}
     <div x-show="showAddMentor"
          x-cloak
          class="fixed inset-0 z-50 flex items-center justify-center p-4"
@@ -366,9 +364,7 @@
         </div>
     </div>
 
-    {{-- ══════════════════════════════════════
-         MODAL: Assign Pelatihan
-    ══════════════════════════════════════ --}}
+    {{-- MODAL: Assign Pelatihan --}}
     <div x-show="showAssign"
          x-cloak
          class="fixed inset-0 z-50 flex items-center justify-center p-4"
@@ -434,9 +430,7 @@
     </div>
 
 
-    {{-- ══════════════════════════════════════
-         MODAL: Reset Password Peserta
-    ══════════════════════════════════════ --}}
+    {{-- MODAL: Reset Password Peserta --}}
     <div x-show="showResetPassword"
          x-cloak
          class="fixed inset-0 z-50 flex items-center justify-center p-4"

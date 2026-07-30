@@ -62,12 +62,12 @@ class SertifikatController extends Controller
         return view('admin.sertifikat.index', compact('data', 'stats', 'pelatihans', 'selectedId'));
     }
 
-    /*Generate sertifikat PDF*/
+    //Generate sertifikat PDF
     public function generate(int $pendaftaranId)
     {
         $daftar = Pendaftaran::with(['peserta', 'pelatihan.mentors', 'pelatihan.sesi'])->findOrFail($pendaftaranId);
 
-        // Cek lulus
+        //Cek lulus
         $totalSesi = SesiPelatihan::where('pelatihan_id', $daftar->pelatihan_id)->count();
         $hadir     = Presensi::where('user_id', $daftar->user_id)
             ->whereHas('sesi', fn($q) => $q->where('pelatihan_id', $daftar->pelatihan_id))
@@ -85,7 +85,7 @@ class SertifikatController extends Controller
             return back()->with('error', 'Peserta belum memenuhi syarat kelulusan.');
         }
 
-        // Buat atau ambil record sertifikat
+        //Buat record sertifikat
         $sertifikat = Sertifikat::firstOrCreate(
             ['pendaftaran_id' => $daftar->id],
             [
@@ -94,12 +94,12 @@ class SertifikatController extends Controller
             ]
         );
 
-        // Hitung rentang tanggal pelaksanaan pelatihan
+        //Hitung rentang tanggal pelaksanaan pelatihan
         $sesiTerurut = $daftar->pelatihan->sesi->whereNotNull('tanggal')->sortBy('tanggal');
         $tglMulai    = $sesiTerurut->first()?->tanggal;
         $tglSelesai  = $sesiTerurut->last()?->tanggal;
         
-        $periode = now()->translatedFormat('d F Y'); // Default fallback
+        $periode = now()->translatedFormat('d F Y'); 
         if ($tglMulai) {
             $tglMulaiCarbon = \Carbon\Carbon::parse($tglMulai);
             $tglSelesaiCarbon = $tglSelesai ? \Carbon\Carbon::parse($tglSelesai) : $tglMulaiCarbon;
@@ -115,7 +115,7 @@ class SertifikatController extends Controller
             }
         }
 
-        // Generate PDF
+        //Generate PDF
         $pdf = Pdf::loadView('pdf.sertifikat', [
             'peserta'    => $daftar->peserta,
             'pelatihan'  => $daftar->pelatihan,
@@ -132,7 +132,7 @@ class SertifikatController extends Controller
         return back()->with('success', 'Sertifikat berhasil digenerate untuk ' . $daftar->peserta->name);
     }
 
-    /*Download sertifikat oleh admin*/
+    //Download sertifikat oleh admin
     public function download(int $sertifikatId)
     {
         $sertifikat = Sertifikat::with('pendaftaran.peserta')->findOrFail($sertifikatId);
@@ -145,7 +145,7 @@ class SertifikatController extends Controller
     }
 
 
-    /** Download laporan peserta per pelatihan (PDF) */
+    //Download laporan peserta per pelatihan (PDF)
     public function laporanPdf(Request $request)
     {
         $pelatihanId = $request->pelatihan_id;
@@ -186,7 +186,7 @@ class SertifikatController extends Controller
             ];
         });
 
-        // Hitung rentang tanggal pelatihan
+        //Hitung rentang tanggal pelatihan
         $sesiTerurut = $pelatihan->sesi->whereNotNull('tanggal')->sortBy('tanggal');
         $tglMulai    = $sesiTerurut->first()?->tanggal;
         $tglSelesai  = $sesiTerurut->last()?->tanggal;

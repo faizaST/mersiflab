@@ -15,7 +15,7 @@ class DashboardController extends Controller
         /** @var \App\Models\User $user */
         $user = Auth::user();
 
-        // Pelatihan yang diampu mentor ini (via pivot)
+        //Pelatihan yang diampu mentor ini
         $pelatihans = $user->pelatihans()->with('sesi')->latest()->get();
 
         $sesiHariIni = SesiPelatihan::whereIn('pelatihan_id', $pelatihans->pluck('id'))

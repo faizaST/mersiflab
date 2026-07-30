@@ -219,7 +219,7 @@
 <script>
 const SESI_DATA        = {{ Js::from($sesiPerPelatihan) }};
 const PESERTA_DATA     = {{ Js::from($pesertaPerPelatihan) }};
-const PRESENSI_DATA    = {{ Js::from($presensiTersimpan) }};   // { sesi_id: { user_id: {hadir,status_tugas,catatan} } }
+const PRESENSI_DATA    = {{ Js::from($presensiTersimpan) }};   
 
 function presensiPage() {
     return {
@@ -227,8 +227,8 @@ function presensiPage() {
         selectedSesi: '',
         sesiList: [],
         pesertaList: [],
-        sudahDiabsen: false,   // apakah sesi ini sudah pernah disimpan
-        isToday: false,        // apakah sesi ini adalah hari ini
+        sudahDiabsen: false,   
+        isToday: false,       
 
         get hadirCount() {
             return this.pesertaList.filter(p => p.hadir).length;
@@ -250,25 +250,22 @@ function presensiPage() {
                 return;
             }
 
-            // Check if today matches the session date
+            //Check if today matches the session date
             const sesiId = String(this.selectedSesi);
             const sesi = this.sesiList.find(s => String(s.id) === sesiId);
             const today = new Date().toISOString().split('T')[0];
             this.isToday  = sesi && sesi.tanggal === today;
 
-            // Ambil daftar peserta untuk pelatihan ini
-            // Gunakan String key agar konsisten dengan JSON object key
+            //Ambil daftar peserta untuk pelatihan ini
             const pelatihanId = String(this.selectedPelatihan);
             const basePeserta = PESERTA_DATA[pelatihanId] || [];
 
-            // Ambil data presensi yang sudah tersimpan untuk sesi ini
-            // PHP JSON encode integer key menjadi string di JS object
+            //Ambil data presensi yang sudah tersimpan untuk sesi ini
             const existing = PRESENSI_DATA[sesiId] || {};
             this.sudahDiabsen = Object.keys(existing).length > 0;
 
-            // Merge: jika ada data existing, pakai itu; jika tidak, default kosong
+            //Merge: jika ada data existing, pakai itu; jika tidak, default kosong
             this.pesertaList = basePeserta.map(p => {
-                // Lookup dengan String key karena JSON object key selalu string
                 const saved = existing[String(p.id)];
                 return {
                     id:           p.id,

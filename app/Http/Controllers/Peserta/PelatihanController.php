@@ -13,7 +13,7 @@ class PelatihanController extends Controller
 {
     public function index(Request $request)
     {
-        // Pendaftaran user ini
+        //Pendaftaran user
         $pendaftarans = Pendaftaran::with('pelatihan')
             ->where('user_id', Auth::id())
             ->get()
@@ -25,7 +25,7 @@ class PelatihanController extends Controller
             }])
             ->whereIn('status', ['aktif', 'selesai']);
 
-        // Filter hanya pelatihan yang sudah didaftarkan
+        //Filter hanya pelatihan yang sudah daftar
         if ($request->boolean('terdaftar')) {
             $query->whereIn('id', $pendaftarans->keys());
         }
@@ -36,7 +36,7 @@ class PelatihanController extends Controller
         return view('peserta.pelatihan.index', compact('pelatihans', 'pendaftarans', 'hanyaTerdaftar'));
     }
 
-    /** Daftar pelatihan (gratis langsung pending, berbayar perlu upload bukti) */
+    //Daftar pelatihan
     public function daftar(Request $request)
     {
         $request->validate(['pelatihan_id' => 'required|exists:pelatihans,id']);
@@ -67,7 +67,7 @@ class PelatihanController extends Controller
         return back()->with('success_daftar', $request->pelatihan_id);
     }
 
-    /** Upload bukti bayar langsung dari halaman pelatihan */
+    //Upload bukti bayar
     public function uploadBukti(Request $request, int $pendaftaranId)
     {
         $request->validate([

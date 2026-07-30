@@ -324,9 +324,7 @@
     </div>
     @endif
 
-    {{-- ══════════════════════════════════════
-         MODAL 1: Konfirmasi Daftar
-    ══════════════════════════════════════ --}}
+    {{-- MODAL Konfirmasi Daftar --}}
     <div x-show="modalDaftar" x-cloak
          class="fixed inset-0 z-50 flex items-center justify-center p-4"
          x-transition:enter="transition ease-out duration-200"
@@ -405,9 +403,7 @@
         </div>
     </div>
 
-    {{-- ══════════════════════════════════════
-         MODAL 2: Upload Bukti Bayar
-    ══════════════════════════════════════ --}}
+    {{-- MODAL Upload Bukti Bayar --}}
     <div x-show="modalBukti" x-cloak
          class="fixed inset-0 z-50 flex items-center justify-center p-4"
          x-transition:enter="transition ease-out duration-200"
@@ -483,9 +479,7 @@
         </div>
     </div>
 
-    {{-- ══════════════════════════════════════
-         MODAL 3: Lihat Bukti
-    ══════════════════════════════════════ --}}
+    {{-- MODAL Lihat Bukti --}}
     <div x-show="modalLihat" x-cloak
          class="fixed inset-0 z-50 flex items-center justify-center p-4"
          x-transition:enter="transition ease-out duration-200"
@@ -534,9 +528,7 @@
         </div>
     </div>
 
-    {{-- ══════════════════════════════════════
-         MODAL 4: Lihat Nota Konfirmasi
-    ══════════════════════════════════════ --}}
+    {{-- MODAL Lihat Nota Konfirmasi --}}
     <div x-show="modalNota" x-cloak
          class="fixed inset-0 z-50 flex items-center justify-center p-4"
          x-transition:enter="transition ease-out duration-200"

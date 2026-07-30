@@ -19,14 +19,14 @@ class DashboardController extends Controller
         $pelatihan_aktif  = Pelatihan::where('status', 'aktif')->with('mentors')->latest()->take(5)->get();
         $total_sertifikat = Sertifikat::count();
 
-        // Chart: pendaftar per bulan (6 bulan terakhir)
+        //Chart: pendaftar per bulan (6 bulan terakhir)
         $chart_data = collect(range(5, 0))->map(function (int $i): int {
             return Pendaftaran::whereMonth('created_at', now()->subMonths($i)->month)
                 ->whereYear('created_at', now()->subMonths($i)->year)
                 ->count();
         })->values()->toArray();
 
-        // Kategori Pelatihan Dinamis
+        //Kategori Pelatihan Dinamis
         $kategoris = \App\Models\KategoriPelatihan::orderBy('nama')->get();
         
         $kategori_distribution = $kategoris->map(function ($kat) {

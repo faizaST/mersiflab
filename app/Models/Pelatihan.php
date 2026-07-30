@@ -46,20 +46,25 @@ class Pelatihan extends Model
         'tenggat_pendaftaran' => 'datetime',
     ];
 
-    /*mentor */
+    //mentor
     public function mentors(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'mentor_pelatihan')
                     ->withTimestamps();
     }
 
-    /* kategori */
+    //kategori
     public function kategoriPelatihan(): BelongsTo
     {
         return $this->belongsTo(KategoriPelatihan::class, 'kategori_id');
     }
 
-    /*tampilan singkat mentor pertama*/
+    public function getKategoriAttribute(): ?string
+    {
+        return $this->kategoriPelatihan?->nama;
+    }
+
+    //tampilan singkat mentor pertama
     public function getMentorAttribute(): ?User
     {
         return $this->mentors->first();

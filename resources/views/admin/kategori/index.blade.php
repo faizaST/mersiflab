@@ -106,13 +106,13 @@
             </div>
         </div>
 
-        {{-- Right: Form Card (col-span-1) --}}
+        {{-- Right: Form Card --}}
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 self-start">
             <h3 class="font-bold text-slate-800 text-base mb-4" x-text="isEdit ? 'Edit Kategori' : 'Tambah Kategori Baru'"></h3>
             
             <form :action="actionUrl" method="POST">
                 @csrf
-                {{-- Dynamic method for PUT request --}}
+                {{-- method for PUT request --}}
                 <input type="hidden" name="_method" :value="isEdit ? 'PUT' : 'POST'">
 
                 <div class="space-y-4">

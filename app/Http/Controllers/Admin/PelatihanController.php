@@ -88,7 +88,7 @@ class PelatihanController extends Controller
             'tenggat_pendaftaran' => $request->tenggat_pendaftaran,
         ]);
 
-        // Assign mentor 
+        //memilih mentor 
         if ($request->filled('mentor_ids')) {
             $pelatihan->mentors()->sync($request->mentor_ids);
         }
@@ -151,7 +151,7 @@ class PelatihanController extends Controller
         $pelatihan = Pelatihan::findOrFail($id);
 
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama
+            //Hapus gambar lama
             if ($pelatihan->gambar && Storage::disk('public')->exists($pelatihan->gambar)) {
                 Storage::disk('public')->delete($pelatihan->gambar);
             }
@@ -178,10 +178,10 @@ class PelatihanController extends Controller
             'tenggat_pendaftaran' => $request->tenggat_pendaftaran,
         ]);
 
-        // memilih mentor 
+        //memilih mentor 
         $pelatihan->mentors()->sync($request->mentor_ids ?? []);
 
-        // isi sesi
+        //isi sesi
         if ($request->has('sesi') && is_array($request->sesi)) {
             $submittedIds = [];
             foreach ($request->sesi as $s) {
@@ -226,7 +226,7 @@ class PelatihanController extends Controller
             ->with('success', 'Pelatihan berhasil dihapus.');
     }
 
-    /** Toggle status aktif ↔ selesai langsung dari tabel */
+    //Toggle status aktif ↔ selesai langsung dari tabel
     public function updateStatus(Request $request, int $id): RedirectResponse
     {
         $request->validate([

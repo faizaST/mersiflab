@@ -4,7 +4,7 @@
 
 <div class="space-y-8">
 
-    {{-- Welcome Banner --}}
+    {{-- Welcome --}}
     <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-sky-500 to-cyan-400 p-8 shadow-soft">
 
         <div class="absolute top-0 right-0 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>

@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', function () {
     Chart.defaults.color = '#94a3b8';
     Chart.defaults.font.family = "'Outfit', sans-serif";
 
-    // Line Chart
+    //Line Chart
     const ctx = document.getElementById('participationChart').getContext('2d');
 
     const gradient = ctx.createLinearGradient(0, 0, 0, 260);

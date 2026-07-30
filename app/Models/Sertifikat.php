@@ -16,7 +16,7 @@ class Sertifikat extends Model
         return $this->belongsTo(Pendaftaran::class);
     }
 
-    /* cek peserta lulus berdasarkan presensi */
+    //cek peserta lulus berdasarkan presensi
     public static function cekLulus(int $userId, int $pelatihanId): bool
     {
         $totalSesi = SesiPelatihan::where('pelatihan_id', $pelatihanId)->count();
@@ -33,7 +33,7 @@ class Sertifikat extends Model
         return $persen >= 80 && $invalid === 0;
     }
 
-    /*Generate nomor sertifikat unik */
+    //Generate nomor sertifikat unik
     public static function generateNomor(): string
     {
         $now   = now();

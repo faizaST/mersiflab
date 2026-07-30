@@ -315,9 +315,7 @@
     </div>
 
 
-    {{-- ══════════════════════════════════════
-         MODAL 2: Lihat Nota Konfirmasi
-    ══════════════════════════════════════ --}}
+    {{-- MODAL Lihat Nota Konfirmasi --}}
     <div x-show="modalNota" x-cloak
          class="fixed inset-0 z-50 flex items-center justify-center p-4"
          x-transition:enter="transition ease-out duration-200"

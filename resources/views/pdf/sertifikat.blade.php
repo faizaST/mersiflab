@@ -30,7 +30,7 @@
             overflow: hidden;
         }
 
-        /* Outer Frame Border (Elegant Gold & Navy) */
+        /* Outer Frame Border */
         .frame-outer {
             @if($pelatihan->sertifikat_template) display: none; @endif
             position: absolute;
@@ -42,7 +42,7 @@
             @if($pelatihan->sertifikat_template) display: none; @endif
             position: absolute;
             top: 7.5mm; left: 7.5mm; right: 7.5mm; bottom: 7.5mm;
-            border: 1.5px solid #d4af37; /* Metallic Gold Accent */
+            border: 1.5px solid #d4af37;
             z-index: 1;
         }
 
@@ -101,11 +101,11 @@
             pointer-events: none;
         }
 
-        /* Container (Perfect margins and auto-centering vertically) */
+        /* Container */
         .content {
             position: relative;
             z-index: 10;
-            padding: 17mm 24mm 10mm 24mm; /* Perfectly centered top padding */
+            padding: 17mm 24mm 10mm 24mm;
             text-align: center;
         }
 
@@ -128,9 +128,9 @@
 
         /* Certificate Heading */
         .cert-title {
-            font-size: 40pt; /* Ultra impact title */
+            font-size: 40pt; 
             font-weight: bold;
-            color: #0c2340; /* Royal Deep Navy */
+            color: #0c2340; 
             text-transform: uppercase;
             margin-bottom: 1mm;
             letter-spacing: 4px;
@@ -156,12 +156,12 @@
         .name-container {
             display: inline-block;
             margin-bottom: 5.5mm;
-            border-bottom: 3px solid #d4af37; /* Thicker Gold accent line */
+            border-bottom: 3px solid #d4af37; 
             padding-bottom: 1.5mm;
             min-width: 140mm;
         }
         .name {
-            font-size: 36pt; /* Maximum majestic size */
+            font-size: 36pt; 
             font-weight: bold;
             color: #0c2340;
             text-transform: uppercase;
@@ -230,7 +230,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             height: 24mm;
-            z-index: 1; /* Signature lies underneath */
+            z-index: 1; 
         }
         .stamp-img {
             position: absolute;
@@ -239,7 +239,7 @@
             transform: translate(-50%, -50%);
             height: 26mm;
             opacity: 0.85;
-            z-index: 2; /* Stamp sits on top of the signature */
+            z-index: 2; 
         }
         
         .sig-line {

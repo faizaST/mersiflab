@@ -1,8 +1,5 @@
 ﻿{{--
     Partial: Lokasi Picker dengan Search Nominatim
-    Props:
-      $initLat, $initLng, $initZoom
-      $lokasiNama, $lokasiAlamat, $latValue, $lngValue
 --}}
 @php
     $initLat      = $initLat      ?? -6.2088;

@@ -16,13 +16,14 @@ class NotaController extends Controller
             ->where('id', $pendaftaranId)
             ->where('status', 'terverifikasi');
 
-        // Jika bukan admin, pastikan milik user yang login
+        //Jika bukan admin, pastikan milik user yang login
         if (Auth::user()->role !== 'admin') {
             $query->where('user_id', Auth::id());
         }
 
         $pendaftaran = $query->firstOrFail();
 
+        //Jika pelatihan tidak berbayar, kembalikan error
         if (!$pendaftaran->pelatihan->berbayar) {
             return back()->with('error', 'Pelatihan gratis tidak memerlukan nota pembayaran.');
         }

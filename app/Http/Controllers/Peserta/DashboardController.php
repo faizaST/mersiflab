@@ -20,7 +20,7 @@ class DashboardController extends Controller
             ->where('user_id', $user->id)
             ->latest()->get();
 
-        // Hitung progress kehadiran per pelatihan
+        //Hitung progress kehadiran per pelatihan
         $pendaftarans = $pendaftarans->map(function ($daftar) use ($user) {
             $totalSesi = $daftar->pelatihan->sesi->count();
             $hadir     = Presensi::where('user_id', $user->id)
@@ -32,7 +32,7 @@ class DashboardController extends Controller
             return $daftar;
         });
 
-        // Sesi berikutnya — hanya dari pelatihan yang masih aktif
+        //Sesi berikutnya dari pelatihan yang aktif
         $pelatihanAktifIds = $pendaftarans
             ->filter(fn($d) => $d->pelatihan->status === 'aktif' && $d->status === 'terverifikasi')
             ->pluck('pelatihan_id');
@@ -45,7 +45,7 @@ class DashboardController extends Controller
                 ->first()
             : null;
 
-        // Lokasi pelatihan untuk peta
+        //Lokasi pelatihan untuk peta
         $lokasiPeta = Pelatihan::whereIn('id', $pendaftarans->pluck('pelatihan_id'))
             ->whereNotNull('lat')->whereNotNull('lng')
             ->get(['id', 'nama', 'lat', 'lng', 'lokasi_nama']);

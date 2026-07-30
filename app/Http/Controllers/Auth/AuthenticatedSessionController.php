@@ -20,7 +20,7 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
-     * Handle an incoming authentication request.
+     * Handle an  incoming authentication request.
      */
     public function store(LoginRequest $request): RedirectResponse
     {
@@ -32,12 +32,12 @@ class AuthenticatedSessionController extends Controller
 
         if ($user->role == 'admin') {
             return redirect('/admin/dashboard');
-    } elseif ($user->role == 'mentor') {
-        return redirect('/mentor/dashboard');
-    } else {
-        return redirect('/peserta/dashboard');
+        } elseif ($user->role == 'mentor') {
+            return redirect('/mentor/dashboard');
+        } else {
+            return redirect('/peserta/dashboard');
+        }
     }
-}
 
     /**
      * Destroy an authenticated session.

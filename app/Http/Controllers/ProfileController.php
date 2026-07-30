@@ -11,13 +11,13 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    /** Tampilkan halaman profil (semua role) */
+    //Tampilkan halaman profil
     public function edit(Request $request): View
     {
         return view('profile.edit', ['user' => $request->user()]);
     }
 
-    /** Update informasi profil */
+    //Update informasi profil
     public function update(Request $request): RedirectResponse
     {
         $user = $request->user();
@@ -45,7 +45,7 @@ class ProfileController extends Controller
         return back()->with('success', 'Profil berhasil diperbarui.');
     }
 
-    /** Update password */
+    //Update password
     public function updatePassword(Request $request): RedirectResponse
     {
         $request->validate([
@@ -60,7 +60,7 @@ class ProfileController extends Controller
         return back()->with('success_password', 'Password berhasil diperbarui.');
     }
 
-    /** Hapus akun */
+    //Hapus akun
     public function destroy(Request $request): RedirectResponse
     {
         $request->validate([

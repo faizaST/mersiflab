@@ -57,7 +57,7 @@ class PendaftaranController extends Controller
     {
         $daftar = Pendaftaran::with('sertifikat')->findOrFail($id);
 
-        // Hapus sertifikat jika ada
+        //Hapus sertifikat jika ada
         if ($daftar->sertifikat) {
             if ($daftar->sertifikat->file_path && Storage::disk('public')->exists($daftar->sertifikat->file_path)) {
                 Storage::disk('public')->delete($daftar->sertifikat->file_path);
@@ -65,7 +65,7 @@ class PendaftaranController extends Controller
             $daftar->sertifikat->delete();
         }
 
-        // Hapus presensi jika ada
+        //Hapus presensi jika ada
         \App\Models\Presensi::where('user_id', $daftar->user_id)
             ->whereHas('sesi', fn($q) => $q->where('pelatihan_id', $daftar->pelatihan_id))
             ->delete();
@@ -75,7 +75,7 @@ class PendaftaranController extends Controller
         return back()->with('success', 'Verifikasi pendaftaran berhasil dibatalkan.');
     }
 
-    /* Tampilkan file bukti bayar */
+    //Tampilkan file bukti bayar
     public function lihatBukti(int $id)
     {
         $daftar = Pendaftaran::findOrFail($id);
@@ -87,7 +87,7 @@ class PendaftaranController extends Controller
         $mime = mime_content_type($path) ?: 'application/octet-stream';
         $ext  = pathinfo($daftar->bukti_bayar, PATHINFO_EXTENSION);
 
-        // Tampilkan untuk gambar, download untuk PDF
+        //Tampilkan untuk gambar, download untuk PDF
         if (in_array($ext, ['jpg', 'jpeg', 'png'])) {
             return response(
                 Storage::disk('public')->get($daftar->bukti_bayar),

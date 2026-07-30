@@ -21,7 +21,7 @@ class RiwayatController extends Controller
             ->where('user_id', $user->id)
             ->latest()->get();
 
-        // Hitung statistik per pendaftaran
+        //Hitung statistik per pendaftaran
         $riwayat = $pendaftarans->map(function ($daftar) use ($user) {
             $totalSesi = $daftar->pelatihan->sesi->count();
             $hadir     = Presensi::where('user_id', $user->id)
@@ -59,7 +59,7 @@ class RiwayatController extends Controller
         $sertifikat = Sertifikat::with('pendaftaran.peserta')
             ->findOrFail($sertifikatId);
 
-        // Pastikan hanya pemilik yang bisa download
+        //Pastikan hanya pemilik yang bisa download
         abort_if($sertifikat->pendaftaran->user_id !== Auth::id(), 403);
         abort_if(!$sertifikat->file_path || !Storage::disk('public')->exists($sertifikat->file_path), 404, 'File sertifikat tidak ditemukan.');
 

@@ -24,7 +24,7 @@ class User extends Authenticatable
         ];
     }
 
-    /** Pelatihan yang diampu mentor ini */
+    //Pelatihan yang diampu mentor ini
     public function pelatihans(): BelongsToMany
     {
         return $this->belongsToMany(Pelatihan::class, 'mentor_pelatihan')

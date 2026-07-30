@@ -40,7 +40,7 @@ class SertifikatDesignController extends Controller
 
         $pelatihan = Pelatihan::findOrFail($id);
 
-        // 1. Sertifikat Template Background
+        //Sertifikat Template Background
         if ($request->hasFile('sertifikat_template')) {
             if ($pelatihan->sertifikat_template && Storage::disk('public')->exists($pelatihan->sertifikat_template)) {
                 Storage::disk('public')->delete($pelatihan->sertifikat_template);
@@ -53,7 +53,7 @@ class SertifikatDesignController extends Controller
             $pelatihan->sertifikat_template = null;
         }
 
-        // 2. Logo Kiri
+        //Logo Kiri
         if ($request->hasFile('sertifikat_logo_kiri')) {
             if ($pelatihan->sertifikat_logo_kiri && Storage::disk('public')->exists($pelatihan->sertifikat_logo_kiri)) {
                 Storage::disk('public')->delete($pelatihan->sertifikat_logo_kiri);
@@ -66,7 +66,7 @@ class SertifikatDesignController extends Controller
             $pelatihan->sertifikat_logo_kiri = null;
         }
 
-        // 3. Logo Kanan
+        //Logo Kanan
         if ($request->hasFile('sertifikat_logo_kanan')) {
             if ($pelatihan->sertifikat_logo_kanan && Storage::disk('public')->exists($pelatihan->sertifikat_logo_kanan)) {
                 Storage::disk('public')->delete($pelatihan->sertifikat_logo_kanan);

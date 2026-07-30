@@ -188,7 +188,7 @@
         </form>
     </div>
 
-    {{-- Danger Zone --}}
+    {{-- Hapus Akun --}}
     <div class="bg-white rounded-2xl border border-red-200 shadow-sm p-6">
         <h2 class="font-semibold text-red-700 mb-2 flex items-center gap-2">
             <i class="fa-solid fa-triangle-exclamation"></i> Zona Berbahaya
